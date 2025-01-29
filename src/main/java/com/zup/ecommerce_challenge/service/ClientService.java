@@ -31,4 +31,10 @@ public class ClientService {
                 .map(ClientMapper::convertModelToDTO)
                 .collect(Collectors.toList());
     }
+
+    public ClientDTO getClientByCpf(String cpf) {
+        Client client = clientRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF " + cpf));
+        return ClientMapper.convertModelToDTO(client);
+    }
 }
