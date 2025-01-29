@@ -4,6 +4,7 @@ import com.zup.ecommerce_challenge.dto.ClientDTO;
 import com.zup.ecommerce_challenge.mapper.ClientMapper;
 import com.zup.ecommerce_challenge.model.Client;
 import com.zup.ecommerce_challenge.repository.ClientRepository;
+import com.zup.ecommerce_challenge.util.CpfUtil;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,14 @@ public class ClientService {
 
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    public void validateCpf(String cpf) {
+        if (!CpfUtil.isValidCpf(cpf)) {
+            throw new IllegalArgumentException("CPF inválido: " + cpf);
+        }
+
+        System.out.println("CPF válido. Processando cliente...");
     }
 
     public Client createClient(@Valid ClientDTO clientDTO) {
