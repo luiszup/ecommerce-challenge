@@ -1,20 +1,14 @@
 package com.zup.ecommerce_challenge.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.*;
 
 @Entity
 public class Product {
-
-    @Column(unique = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-
-    @DecimalMin(value = "0.01", message = "O preço do produto deve ser maior que 0.")
     private Double price;
-
-    @Min(value = 0, message = "A quantidade em estoque deve ser maior ou igual a 0.")
     private int quantity;
 
     public Product(String name, Double price, int quantity) {
