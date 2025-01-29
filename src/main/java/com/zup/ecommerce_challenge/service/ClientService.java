@@ -49,7 +49,7 @@ public class ClientService {
         return ClientMapper.convertModelToDTO(client);
     }
 
-    public ClientDTO deleteClient(String cpf) {
+    public void deleteClient(String cpf) {
         Client client = clientRepository.findByCpf(cpf)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF " + cpf));
         clientRepository.delete(client);
