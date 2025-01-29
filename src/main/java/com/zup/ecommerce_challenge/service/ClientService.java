@@ -13,11 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class ClientService {
     private final ClientRepository clientRepository;
-    private final ProductService productService;
 
-    public ClientService(ClientRepository clientRepository, ProductService productService) {
+    public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-        this.productService = productService;
     }
 
     public Client createClient(@Valid ClientDTO clientDTO) {
