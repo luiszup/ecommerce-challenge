@@ -37,4 +37,15 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF " + cpf));
         return ClientMapper.convertModelToDTO(client);
     }
+
+    public ClientDTO updateClient(String cpf, @Valid ClientDTO clientDTO) {
+        Client client = clientRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF " + cpf));
+        client.setName(clientDTO.getName());
+        client.setCpf(clientDTO.getCpf());
+        client.setEmail(clientDTO.getEmail());
+
+        Client updatedClient = clientRepository.save(client);
+        return ClientMapper.convertModelToDTO(client);
+    }
 }
