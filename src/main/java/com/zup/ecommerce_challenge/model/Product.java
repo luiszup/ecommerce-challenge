@@ -17,6 +17,12 @@ public class Product {
     @Min(value = 0, message = "A quantidade em estoque deve ser maior ou igual a 0.")
     private int quantity;
 
+    public Product(String name, Double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public String getName() {
         return name;
     }
