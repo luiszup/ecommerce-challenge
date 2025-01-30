@@ -8,9 +8,9 @@ public class PurchaseRequestDTO {
     @NotBlank(message = "O CPF não pode estar vazio.")
     private String cpf;
 
-    private List<ProductNameDTO> products;
+    private List<ProductDTO> products;
 
-    public PurchaseRequestDTO(String cpf, List<ProductNameDTO> products) {
+    public PurchaseRequestDTO(String cpf, List<ProductDTO> products) {
         this.cpf = cpf;
         this.products = products;
     }
@@ -23,11 +23,11 @@ public class PurchaseRequestDTO {
         this.cpf = cpf;
     }
 
-    public List<ProductNameDTO> getProducts() {
+    public List<ProductDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductNameDTO> products) {
+    public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
 }
