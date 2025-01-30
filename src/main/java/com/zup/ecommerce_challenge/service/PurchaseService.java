@@ -36,4 +36,9 @@ public class PurchaseService {
         Purchase purchase = new Purchase(client, products);
         return purchaseRepository.save(purchase);
     }
+
+    public Purchase getPurchaseById(Long id) {
+        return purchaseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Compra não encontrada com o ID" + id));
+    }
 }
