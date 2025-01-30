@@ -47,4 +47,10 @@ public class ProductService {
         Product updatedProduct = productRepository.save(product);
         return ProductMapper.convertModelToDTO(product);
     }
+
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com ID " + id));
+        productRepository.delete(product);
+    }
 }
