@@ -6,16 +6,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class ClientDTO {
-    @NotNull(message = "O nome não pode ser nulo.")
     @NotBlank(message = "Por favor, digite um nome.")
     private String name;
 
-    @Column(unique = true)
-    @NotNull(message = "O CPF não pode ser nulo.")
     @NotBlank(message = "Por favor, digite um CPF.")
     private String cpf;
 
-    @Column(unique = true)
     @Email
     private String email;
 
