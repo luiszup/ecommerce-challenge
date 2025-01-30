@@ -41,4 +41,8 @@ public class PurchaseService {
         return purchaseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Compra não encontrada com o ID" + id));
     }
+
+    public List<Purchase> getAllPurchases() {
+        return purchaseRepository.findAll();
+    }
 }
