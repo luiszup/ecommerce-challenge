@@ -45,4 +45,14 @@ public class PurchaseService {
     public List<Purchase> getAllPurchases() {
         return purchaseRepository.findAll();
     }
+
+    public Purchase updatePurchase(Long id, Purchase updatedPurchase) {
+        Purchase purchase = purchaseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Compra não encontrada com ID " + id));
+        purchase.setClient(updatedPurchase.getClient());
+        purchase.setProducts(updatedPurchase.getProducts());
+        purchase.setPurchaseDate(updatedPurchase.getPurchaseDate());
+
+        return purchaseRepository.save(updatedPurchase);
+    }
 }
