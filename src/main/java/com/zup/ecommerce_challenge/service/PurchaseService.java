@@ -55,4 +55,11 @@ public class PurchaseService {
 
         return purchaseRepository.save(updatedPurchase);
     }
+
+    public void deletePurchase(Long id) {
+        if (!purchaseRepository.existsById(id)) {
+            throw new IllegalArgumentException("Compra não encontrada com ID " + id);
+        }
+        purchaseRepository.deleteById(id);
+    }
 }
