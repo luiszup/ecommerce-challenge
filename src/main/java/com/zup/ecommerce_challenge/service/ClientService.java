@@ -27,9 +27,10 @@ public class ClientService {
         System.out.println("CPF válido. Processando cliente...");
     }
 
-    public Client createClient(@Valid ClientDTO clientDTO) {
+    public ClientDTO createClient(@Valid ClientDTO clientDTO) {
         Client client = ClientMapper.convertDTOtoModel(clientDTO);
-        return clientRepository.save(client);
+        Client newClient = clientRepository.save(client);
+        return new ClientDTO(newClient.getCpf(), newClient.getEmail(), newClient.getName());
     }
 
     public List<ClientDTO> getAllClients() {
