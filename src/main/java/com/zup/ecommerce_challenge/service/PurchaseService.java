@@ -18,7 +18,7 @@ public class PurchaseService {
     private ProductRepository productRepository;
     private PurchaseRepository purchaseRepository;
 
-    public Purchase processPurchase(PurchaseRequestDTO purchaseRequestDTO) {
+    public Purchase createPurchase(PurchaseRequestDTO purchaseRequestDTO) {
         Client client = clientRepository.findByCpf(purchaseRequestDTO.getCpf())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o CPF " + purchaseRequestDTO.getCpf()));
         List<Product> products = purchaseRequestDTO.getProducts().stream()
