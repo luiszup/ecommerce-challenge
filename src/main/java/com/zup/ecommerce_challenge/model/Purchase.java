@@ -26,9 +26,8 @@ public class Purchase {
     @Column(nullable = false)
     private LocalDateTime purchaseDate;
 
-    public Purchase(Client client, Long id, List<Product> products, LocalDateTime purchaseDate) {
+    public Purchase(Client client, List<Product> products) {
         this.client = client;
-        this.id = id;
         this.products = products;
         this.purchaseDate = LocalDateTime.now();
     }
