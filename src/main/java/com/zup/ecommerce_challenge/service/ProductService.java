@@ -6,8 +6,6 @@ import com.zup.ecommerce_challenge.model.Product;
 import com.zup.ecommerce_challenge.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -17,10 +15,14 @@ public class ProductService {
     }
 
     public ProductDTO createProduct(ProductDTO productDTO) {
-        Product product = ProductMapper.convertDTOForModel(productDTO);
+        Product product = ProductMapper.convertDTOToModel(productDTO);
         Product newProduct = productRepository.save(product);
         return new ProductDTO(newProduct.getName(), newProduct.getPrice(), newProduct.getQuantity());
     }
 
-
+    public ProductDTO getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com ID " + id));
+        return ProductMapper.convertModelToDTO(product);
+    }
 }
