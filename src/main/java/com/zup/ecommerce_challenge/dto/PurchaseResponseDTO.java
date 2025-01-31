@@ -1,18 +1,24 @@
 package com.zup.ecommerce_challenge.dto;
 
-import jakarta.validation.constraints.NotBlank;
-
 import java.util.List;
 
-public class PurchaseRequestDTO {
-    @NotBlank(message = "O CPF não pode estar vazio.")
+public class PurchaseResponseDTO {
+    private Long id;
     private String cpf;
-
     private List<ProductDTO> products;
 
-    public PurchaseRequestDTO(String cpf, List<ProductDTO> products) {
+    public PurchaseResponseDTO(Long id, String cpf, List<ProductDTO> products) {
+        this.id = id;
         this.cpf = cpf;
         this.products = products;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCpf() {
