@@ -3,13 +3,14 @@ package com.zup.ecommerce_challenge.dto;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class ProductDTO {
 
     @NotBlank(message = "Por favor, digite o nome do produto.")
     private String name;
 
-    @NotBlank(message = "Por favor, digite um preço.")
+    @NotNull(message = "Por favor, digite um preço.")
     @DecimalMin(value = "0.01", message = "O preço do produto deve ser maior que 0.")
     private Double price;
 
