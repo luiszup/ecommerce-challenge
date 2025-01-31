@@ -26,6 +26,9 @@ public class Purchase {
     @Column(nullable = false)
     private LocalDateTime purchaseDate;
 
+    public Purchase() {
+    }
+
     public Purchase(Client client, List<Product> products) {
         this.client = client;
         this.products = products;

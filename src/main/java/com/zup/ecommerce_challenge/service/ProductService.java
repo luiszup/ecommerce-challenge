@@ -46,7 +46,7 @@ public class ProductService {
         product.setQuantity(productDTO.getQuantity());
 
         Product updatedProduct = productRepository.save(product);
-        return ProductMapper.convertModelToDTO(product);
+        return ProductMapper.convertModelToDTO(updatedProduct);
     }
 
     public void deleteProduct(Long id) {

@@ -38,7 +38,7 @@ public class PurchaseService {
             if (product.getQuantity() == 0) {
                 throw new IllegalArgumentException("O produto " + product.getName() + " está em falta");
             }
-            product.setQuantity(product.getQuantity() - 1);
+            product.setQuantity(product.getQuantity() - purchaseRequestDTO.get;);
             productRepository.save(product);
         }
 
