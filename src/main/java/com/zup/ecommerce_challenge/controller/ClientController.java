@@ -3,6 +3,7 @@ package com.zup.ecommerce_challenge.controller;
 import com.zup.ecommerce_challenge.dto.ClientDTO;
 import com.zup.ecommerce_challenge.service.ClientService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +17,14 @@ public class ClientController {
     }
 
     @PostMapping
-    public ClientDTO createClient(@PathVariable String cpf, @RequestBody @Valid ClientDTO clientDTO) {
-        clientService.validateCpf(cpf);
-        return clientService.createClient(clientDTO);
+    public ResponseEntity<ClientDTO> createClient(@RequestBody @Valid ClientDTO clientDTO) {
+        try {
+            clientService.validateCpf(clientDTO.getCpf());
+            return ResponseEntity.ok(clientService.createClient(clientDTO));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
+
+
 }
