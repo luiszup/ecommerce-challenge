@@ -50,4 +50,10 @@ public class PurchaseController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deletePurchase(@PathVariable Long id) {
+        purchaseService.deletePurchase(id);
+        return ResponseEntity.noContent().build();
+    }
 }
