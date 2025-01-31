@@ -50,4 +50,10 @@ public class ClientController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> deleteClient(@PathVariable String cpf) {
+        clientService.deleteClient(cpf);
+        return ResponseEntity.noContent().build();
+    }
 }
