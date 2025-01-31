@@ -6,6 +6,7 @@ import com.zup.ecommerce_challenge.model.Product;
 import com.zup.ecommerce_challenge.repository.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public ProductDTO createProduct(@Valid ProductDTO productDTO) {
+    public ProductDTO createProduct(@RequestBody @Valid ProductDTO productDTO) {
         Product product = ProductMapper.convertDTOToModel(productDTO);
         Product newProduct = productRepository.save(product);
         return new ProductDTO(newProduct.getName(), newProduct.getPrice(), newProduct.getQuantity());
@@ -37,7 +38,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO updateProduct(Long id, @Valid ProductDTO productDTO) {
+    public ProductDTO updateProduct(Long id, @RequestBody @Valid ProductDTO productDTO) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com ID " + id));
         product.setName(productDTO.getName());
@@ -45,7 +46,7 @@ public class ProductService {
         product.setQuantity(productDTO.getQuantity());
 
         Product updatedProduct = productRepository.save(product);
-        return ProductMapper.convertModelToDTO(product);
+        return ProductMapper.convertModelToDTO(updatedProduct);
     }
 
     public void deleteProduct(Long id) {

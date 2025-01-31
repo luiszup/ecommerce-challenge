@@ -18,6 +18,9 @@ public class Client {
     @Column(unique = true)
     private String email;
 
+    public Client() {
+    }
+
     public Client(Long id, String name, String cpf, String email) {
         this.id = id;
         this.name = name;

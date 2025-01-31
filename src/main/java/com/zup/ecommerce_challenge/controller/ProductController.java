@@ -23,7 +23,7 @@ public class ProductController {
         try {
             return ResponseEntity.ok(productService.createProduct(productDTO));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
@@ -46,7 +46,7 @@ public class ProductController {
         try {
             return ResponseEntity.ok(productService.updateProduct(id, productDTO));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 

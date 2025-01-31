@@ -24,7 +24,7 @@ public class PurchaseController {
         try {
             return ResponseEntity.ok(purchaseService.createPurchase(purchaseRequestDTO));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
@@ -47,7 +47,7 @@ public class PurchaseController {
         try {
             return ResponseEntity.ok(purchaseService.updatePurchase(id, purchaseRequestDTO));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
