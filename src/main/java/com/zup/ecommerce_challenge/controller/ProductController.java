@@ -40,4 +40,13 @@ public class ProductController {
         }
         return ResponseEntity.ok(products);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDTO productDTO) {
+        try {
+            return ResponseEntity.ok(productService.updateProduct(id, productDTO));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
