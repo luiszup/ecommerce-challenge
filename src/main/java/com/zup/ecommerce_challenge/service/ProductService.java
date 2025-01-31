@@ -38,7 +38,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO updateProduct(Long id, @Valid ProductDTO productDTO) {
+    public ProductDTO updateProduct(Long id, @RequestBody @Valid ProductDTO productDTO) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com ID " + id));
         product.setName(productDTO.getName());
