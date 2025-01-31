@@ -28,7 +28,7 @@ public class ClientController {
         }
     }
 
-    @GetMapping("/cpf")
+    @GetMapping("/{cpf}")
     public ResponseEntity<ClientDTO> getClientByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(clientService.getClientByCpf(cpf));
     }
@@ -40,5 +40,14 @@ public class ClientController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(clients);
+    }
+
+    @PutMapping("/{cpf}")
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable String cpf, @RequestBody @Valid ClientDTO clientDTO) {
+        try {
+            return ResponseEntity.ok(clientService.updateClient(cpf, clientDTO));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
