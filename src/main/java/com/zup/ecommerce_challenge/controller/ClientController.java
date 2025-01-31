@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClientController {
@@ -26,5 +28,17 @@ public class ClientController {
         }
     }
 
+    @GetMapping("/cpf")
+    public ResponseEntity<ClientDTO> getClientByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(clientService.getClientByCpf(cpf));
+    }
 
+    @GetMapping
+    public ResponseEntity<List<ClientDTO>> getAllClients() {
+        List<ClientDTO> clients = clientService.getAllClients();
+        if (clients.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(clients);
+    }
 }
