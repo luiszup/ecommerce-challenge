@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/compras")
 public class PurchaseController {
@@ -29,5 +31,14 @@ public class PurchaseController {
     @GetMapping("/{id}")
     public ResponseEntity<PurchaseResponseDTO> getPurchaseById(@PathVariable Long id) {
         return ResponseEntity.ok(purchaseService.getPurchaseById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PurchaseResponseDTO>> getAllPurchases() {
+        List<PurchaseResponseDTO> purchases = purchaseService.getAllPurchases();
+        if (purchases.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(purchases);
     }
 }
