@@ -24,7 +24,7 @@ public class ClientController {
             clientService.validateCpf(clientDTO.getCpf());
             return ResponseEntity.ok(clientService.createClient(clientDTO));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
@@ -47,7 +47,7 @@ public class ClientController {
         try {
             return ResponseEntity.ok(clientService.updateClient(cpf, clientDTO));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
