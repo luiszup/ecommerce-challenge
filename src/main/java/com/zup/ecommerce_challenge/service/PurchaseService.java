@@ -34,10 +34,17 @@ public class PurchaseService {
                 .map(productNameDTO -> productRepository.findByName(productNameDTO.getName())
                         .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + productNameDTO.getName())))
                 .collect(Collectors.toList());
+
+        List<String> outStockProducts = products.stream()
+                .filter(product -> product.getQuantity() == 0)
+                .map(Product::getName)
+                .collect(Collectors.toList());
+
+        if (!outStockProducts.isEmpty()) {
+            throw new IllegalArgumentException("Produtos em falta: " + String.join(", ", outStockProducts));
+        }
+
         for (Product product : products) {
-            if (product.getQuantity() == 0) {
-                throw new IllegalArgumentException("O produto " + product.getName() + " está em falta");
-            }
             product.setQuantity(product.getQuantity() - 1);
             productRepository.save(product);
         }
