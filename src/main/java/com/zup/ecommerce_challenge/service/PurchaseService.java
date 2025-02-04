@@ -1,6 +1,5 @@
 package com.zup.ecommerce_challenge.service;
 
-import com.zup.ecommerce_challenge.dto.ClientDTO;
 import com.zup.ecommerce_challenge.dto.ProductDTO;
 import com.zup.ecommerce_challenge.dto.PurchaseRequestDTO;
 import com.zup.ecommerce_challenge.dto.PurchaseResponseDTO;
